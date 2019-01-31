@@ -100,7 +100,7 @@ class DefaultWorkerExecutorTest extends Specification {
             options.maxHeapSize = "128m"
             options.systemProperty("foo", "bar")
             options.jvmArgs("-foo")
-            options.bootstrapClasspath(new File("/foo"))
+            options.bootstrapClasspath("foo")
             options.debug = true
         }
 
@@ -112,7 +112,7 @@ class DefaultWorkerExecutorTest extends Specification {
         daemonForkOptions.javaForkOptions.maxHeapSize == "128m"
         daemonForkOptions.javaForkOptions.allJvmArgs.contains("-Dfoo=bar")
         daemonForkOptions.javaForkOptions.allJvmArgs.contains("-foo")
-        daemonForkOptions.javaForkOptions.allJvmArgs.contains("-Xbootclasspath:${File.separator}foo".toString())
+        daemonForkOptions.javaForkOptions.allJvmArgs.contains("-Xbootclasspath:${temporaryFolder.file('foo')}".toString())
         daemonForkOptions.javaForkOptions.allJvmArgs.contains("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005")
     }
 
