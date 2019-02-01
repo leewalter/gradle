@@ -134,4 +134,18 @@ class DaemonParametersTest extends Specification {
         then:
         !daemonParameters.enabled
     }
+
+    def "honors Gradle user home dir"() {
+        setup:
+        def userHomeDir = new File('userDir')
+        BuildLayoutParameters layoutParams = new BuildLayoutParameters()
+        layoutParams.gradleUserHomeDir = userHomeDir
+        def parametersWithBaseDir = new DaemonParameters(layoutParams, TestFiles.fileCollectionFactory())
+
+        when:
+        def result = parametersWithBaseDir.baseDir
+
+        then:
+        result == new File(userHomeDir, 'daemon')
+    }
 }

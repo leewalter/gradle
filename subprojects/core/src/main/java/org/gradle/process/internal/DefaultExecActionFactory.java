@@ -76,6 +76,11 @@ public class DefaultExecActionFactory implements ExecFactory {
     }
 
     @Override
+    public ExecFactory forContext(FileResolver fileResolver, FileCollectionFactory fileCollectionFactory, Instantiator instantiator, BuildCancellationToken buildCancellationToken) {
+        return new DecoratingExecActionFactory(fileResolver, fileCollectionFactory, instantiator, executor, buildCancellationToken);
+    }
+
+    @Override
     public ExecAction newDecoratedExecAction() {
         throw new UnsupportedOperationException();
     }
