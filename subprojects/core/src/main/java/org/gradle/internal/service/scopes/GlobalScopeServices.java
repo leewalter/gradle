@@ -254,10 +254,6 @@ public class GlobalScopeServices extends BasicGlobalScopeServices {
         return new DefaultDirectoryFileTreeFactory(patternSetFactory, fileSystem);
     }
 
-    FileCollectionFactory createFileCollectionFactory(PathToFileResolver fileResolver) {
-        return new DefaultFileCollectionFactory(fileResolver, null);
-    }
-
     ModelRuleExtractor createModelRuleInspector(List<MethodModelRuleExtractor> extractors, ModelSchemaStore modelSchemaStore, StructBindingsStore structBindingsStore, ManagedProxyFactory managedProxyFactory) {
         List<MethodModelRuleExtractor> coreExtractors = MethodModelRuleExtractors.coreExtractors(modelSchemaStore);
         return new ModelRuleExtractor(Iterables.concat(coreExtractors, extractors), managedProxyFactory, modelSchemaStore, structBindingsStore);
