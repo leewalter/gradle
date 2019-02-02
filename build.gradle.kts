@@ -108,6 +108,10 @@ buildTypes {
         tasks("performance:distributedFullPerformanceTest")
     }
 
+    create("distributedFlakinessDetections") {
+        tasks("performance:distributedFlakinessDetection")
+    }
+
     // Used for cross version tests on CI
     create("allVersionsCrossVersionTest") {
         tasks("allVersionsCrossVersionTests", "integMultiVersionTest")
@@ -158,6 +162,13 @@ allprojects {
         maven {
             name = "kotlin-eap"
             url = uri("https://dl.bintray.com/kotlin/kotlin-eap")
+        }
+        maven {
+            name = "sonatype-snapshots"
+            url = uri("https://oss.sonatype.org/content/repositories/snapshots")
+            content {
+                includeGroup("org.openjdk.jmc")
+            }
         }
     }
 

@@ -870,7 +870,7 @@ org:foo:1.0 -> 2.0
             configurations {
                conf {
                   resolutionStrategy.dependencySubstitution {
-                     substitute module('org:foo') because 'foo superceded by bar' with module('org:bar:1.0')
+                     substitute module('org:foo') because 'foo superseded by bar' with module('org:bar:1.0')
                      substitute module('org:baz') with module('org:baz:2.0')
                   }
                }
@@ -907,7 +907,7 @@ org:bar:1.0
       org.gradle.component.category = library (not requested)
    ]
    Selection reasons:
-      - Selected by rule : foo superceded by bar
+      - Selected by rule : foo superseded by bar
 
 org:foo:1.0 -> org:bar:1.0
 \\--- conf
@@ -2297,7 +2297,7 @@ org:foo:[1.1,1.3] -> 1.3
 """
     }
 
-    def "does't mix rejected versions on different constraints"() {
+    def "doesn't mix rejected versions on different constraints"() {
         given:
         mavenRepo.module("org", "foo", "1.0").publish()
         mavenRepo.module("org", "foo", "1.1").publish()
